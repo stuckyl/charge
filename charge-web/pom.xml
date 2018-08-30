@@ -1,0 +1,1015 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+      <groupId>com.charge</groupId>
+      <artifactId>charge-parent</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+  </parent>
+	<artifactId>charge-web</artifactId>
+	<packaging>war</packaging>
+	<!-- 设定主仓库，按设定顺序进行查找  -->
+	<repositories>
+		<repository>
+            <id>aliyun</id>
+            <name>aliyun Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+        </repository>
+		<repository>
+            <id>jeecg</id>
+            <name>jeecg Repository</name>
+            <url>http://maven.jeecg.org/nexus/content/repositories/jeecg</url>
+            <snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+        </repository>
+        <repository>
+            <id>jeecg-snapshots</id>
+            <name>jeecg-snapshots Repository</name>
+            <url>http://maven.jeecg.org/nexus/content/repositories/snapshots</url>
+            <snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+        </repository>
+    </repositories>
+
+	<dependencies>
+        <dependency>
+        	<groupId>com.charge</groupId>
+        	<artifactId>charge-framework</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        	<exclusions>
+        		<exclusion>
+        			<groupId>com.fasterxml</groupId>
+        			<artifactId>classmate</artifactId>
+        		</exclusion>
+        	</exclusions>
+        </dependency>
+       <!-- activation -->
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+		</dependency>
+		<!-- aopalliance -->
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+		</dependency>
+
+		<!-- 自定义的依赖包 -->
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>codegenerate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>minidao-pe</artifactId>
+			<exclusions>
+            	<exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-asm</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit</groupId>
+                    <artifactId>com.springsource.org.junit</artifactId>
+                </exclusion>
+             </exclusions>
+		</dependency>
+        <!-- java生成缩略图-->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-vfs</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>pinyin4j</groupId>
+			<artifactId>pinyin4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.springsource</groupId>
+			<artifactId>org.quartz</artifactId>
+		</dependency>
+		<!-- SPRING start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- SPRING end -->
+
+		<!-- hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-proxool</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+
+		<!-- anltr  hibernate重复
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		-->
+		<!-- spring orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+
+		<!--工作流依赖包 -->
+		<!--
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		-->
+		<!-- mybatis 20170218-去掉无效引用-scott
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		 -->
+
+		<!-- 数据库相关依赖包 _start -->
+        <!--proxool start -->
+        <dependency>
+            <groupId>com.cloudhopper.proxool</groupId>
+            <artifactId>proxool</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>geronimo-spec-javamail</artifactId>
+            		<groupId>geronimo-spec</groupId>
+            	</exclusion>
+            	<exclusion>
+            		<artifactId>avalon-framework-api</artifactId>
+            		<groupId>avalon-framework</groupId>
+            	</exclusion>
+            	<exclusion>
+            		<artifactId>proxool-cglib</artifactId>
+            		<groupId>com.cloudhopper.proxool</groupId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>com.cloudhopper.proxool</groupId>
+            <artifactId>proxool-cglib</artifactId>
+            <version>${proxool.version}</version>
+        </dependency>
+        -->
+        <!-- proxool end-->
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--  mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--  sqlserver -->
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>sqljdbc4</artifactId>
+		</dependency>
+		<!--<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>jdbc2005</artifactId>
+			<version>${sqlserver.version}</version>
+			<scope>runtime</scope>
+		</dependency>-->
+		<!--  oracle -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+        </dependency>
+        <!-- jtds for mssql/db2 
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>${jtds.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		-->
+        <!-- h2 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+        -->
+        <!-- postgresql
+        <dependency>
+            <groupId>org.jeecgframework</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        -->
+        <!-- 数据库相关依赖包 _end -->
+
+		<!-- WEB begin -->
+		<!-- spring mvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!-- web begin Spring MVC Test Framework 需要 servlet-api 3.0 以上  -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+            	<exclusion>
+            		<groupId>javax.servlet</groupId>
+            		<artifactId>servlet-api</artifactId>
+            	</exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- WEB end -->
+
+		<!-- 辅助依赖包 _start -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ant</groupId>
+			<artifactId>ant</artifactId>
+		</dependency>
+        <!-- 辅助依赖包 _end -->
+
+		<!-- 工具包 -->
+		<!-- JSON begin -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency> 
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+		<!-- JSON end -->
+		<!-- dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<!--Logger Support
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.6.1</version>
+         </dependency>
+        -->
+		<!-- classmate -->
+		<dependency>
+			<groupId>com.fasterxml</groupId>
+			<artifactId>classmate</artifactId>
+		</dependency>
+
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- commons-collections -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
+		<!-- commons-chain -->
+		<dependency>
+			<groupId>commons-chain</groupId>
+			<artifactId>commons-chain</artifactId>
+		</dependency>
+		<!-- commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<!-- commons-digester -->
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+		</dependency>
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<!-- commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<!-- commons-lang -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- commons-email -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+		</dependency>
+		<!-- commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<exclusions>
+            	<exclusion>
+            		<groupId>javax.servlet</groupId>
+            		<artifactId>servlet-api</artifactId>
+            	</exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+		</dependency>
+		<!-- commons-validator -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+		</dependency>
+		<!-- ehcache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+		</dependency>
+		<!-- freemarker
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>freemarker-null</artifactId>
+		</dependency>
+		<!-- JSR303 Bean Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+		</dependency>
+        <!-- poi start -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+        </dependency>
+		<dependency>
+            <groupId>org.jeecgframework</groupId>
+            <artifactId>jeasypoi-base</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.jeecgframework</groupId>
+            		<artifactId>jeasypoi-annotation</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jeecgframework</groupId>
+            <artifactId>jeasypoi-web</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.jeecgframework</groupId>
+            		<artifactId>jeasypoi-base</artifactId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jeecgframework</groupId>
+            <artifactId>jeasypoi-annotation</artifactId>
+        </dependency>
+        <!-- poi end-->
+        <!-- openoffice start -->
+		<dependency>
+			<groupId>org.openoffice</groupId>
+			<artifactId>juh</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.openoffice</groupId>
+            <artifactId>unoil</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openoffice</groupId>
+            <artifactId>jurt</artifactId>
+        </dependency>
+        <!-- java的OpenDucument文件转换器，它利用OpenOffice来进行转换工作-->
+        <dependency>
+            <groupId>org.artofsolving</groupId>
+            <artifactId>jodconverter</artifactId>
+        </dependency>
+        <!-- openoffice end -->
+        <dependency>
+            <groupId>com.opensymphony</groupId>
+            <artifactId>xwork-core</artifactId>
+        </dependency>
+
+		<!-- TEST begin -->
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+        <!-- hamcrest -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<!-- jacob -->
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>jacob</artifactId>
+		</dependency>
+		<!-- highchart 图片导出 -->
+		<dependency>
+		  <groupId>org.jeecgframework</groupId>
+		  <artifactId>batik-all</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.jeecgframework</groupId>
+		  <artifactId>fop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis-ext</artifactId>
+		</dependency>
+		<dependency>
+		<groupId>xml-apis</groupId>
+		  <artifactId>xml-apis</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.apache.xmlgraphics</groupId>
+		  <artifactId>xmlgraphics-commons</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>xalan</groupId>
+		  <artifactId>xalan</artifactId>
+		</dependency>
+		<!-- Xml数据导出导入 -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+		</dependency>
+		<!-- groovy 脚本-->
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy</artifactId>
+		</dependency>
+		
+		<dependency>
+		  <groupId>commons-httpclient</groupId>
+		  <artifactId>commons-httpclient</artifactId>
+		</dependency>
+	    <dependency>
+		    <groupId>org.apache.geronimo.specs</groupId>
+		    <artifactId>geronimo-javamail_1.4_spec</artifactId>
+		</dependency>
+		<!-- baidu ueditor-->
+		<dependency>
+		  <groupId>com.baidu.ueditor.jeecg</groupId>
+		  <artifactId>ueditor</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>com.baidu.ueditor.jeecg</groupId>
+		  <artifactId>json</artifactId>
+		</dependency>
+		<!-- baidu ueditor-->
+		
+		<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+		<dependency>
+		  <groupId>org.jsoup</groupId>
+		  <artifactId>jsoup</artifactId>
+		</dependency>
+		<!-- google 工具类 -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		
+		<!-- kisso begin -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>kisso</artifactId>
+		</dependency>
+		<!-- kisso end -->
+		
+		<!-- cxf webservice
+		<dependency> 
+			<groupId>org.apache.cxf</groupId> 
+			<artifactId>cxf-rt-frontend-jaxws</artifactId> 
+			<version>${cxf.version}</version> 
+		</dependency> 
+		<dependency> 
+			<groupId>org.apache.cxf</groupId> 
+			<artifactId>cxf-rt-transports-http</artifactId> 
+			<version>${cxf.version}</version> 
+		</dependency>
+		-->
+		<!-- jeecg plugin  -->
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-ui</artifactId>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-bizcore</artifactId>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-generate</artifactId>
+			<type>jar</type>
+		</dependency>
+		<!-- 插件demo -->
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-biz-demo</artifactId>
+		</dependency>
+		
+		<!-- 插件: 我的邮箱 -->
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-biz-mail</artifactId>
+			<type>jar</type>
+		</dependency>
+		
+		 <!-- 在线聊天工具-->
+		<dependency>
+			<groupId>org.p3framework</groupId>
+			<artifactId>jeecg-p3-biz-chat</artifactId>
+		</dependency>
+		
+		<!--  jeasypoi -->
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>jeasypoi-base</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>jeasypoi-web</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jeecgframework</groupId>
+			<artifactId>jeasypoi-annotation</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		
+		<!-- begin 腾讯云-->
+		<dependency>
+			<groupId>com.qcloud</groupId>
+			<artifactId>cos_api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<!-- end 腾讯云-->
+		
+		<!-- redis cache related.....start -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<!-- redis cache related.....end -->
+		<!-- commons-net..ftp..start -->
+		<dependency>
+		    <groupId>commons-net</groupId>
+		    <artifactId>commons-net</artifactId>
+		</dependency>
+		<!-- commons-net..ftp...end -->
+		<!-- swagger  start -->
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		<dependency>  
+		    <groupId>com.fasterxml.jackson.core</groupId>  
+		    <artifactId>jackson-core</artifactId>  
+		</dependency>  
+		<dependency>  
+		    <groupId>com.fasterxml.jackson.core</groupId>  
+		    <artifactId>jackson-databind</artifactId>  
+		</dependency>  
+		<dependency>  
+		    <groupId>com.fasterxml.jackson.core</groupId>  
+		    <artifactId>jackson-annotations</artifactId>  
+		</dependency> 
+		<!-- swagger   end -->
+		<!-- JWT  begin -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt</artifactId>
+		</dependency>
+		<!-- JWT  end -->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 多war开发Maven支持-->
+		     <plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-war-plugin</artifactId>  
+		        <version>2.6</version>
+		        <configuration>
+					 <warSourceExcludes>%regex[^plug-in.+(?:(?&lt;!(?:-|\.)min)\.js)]
+					 ,%regex[^plug-in/accordion.+(?:(?&lt;!(?:-|\.)min)\.css)]
+					 ,%regex[^plug-in/bootstrap.+(?:(?&lt;!(?:-|\.)min)\.css)]
+					 ,%regex[^plug-in/easyui/themes/black.+(?:(?&lt;!(?:-|\.)min)\.css)]
+					 ,%regex[^plug-in/easyui/themes/default.+(?:(?&lt;!(?:-|\.)min)\.css)]
+					 ,%regex[^plug-in/Validform.+(?:(?&lt;!(?:-|\.)min)\.css)]
+					 </warSourceExcludes>  
+		        </configuration>
+		     </plugin>
+
+		   <!-- tomcat插件 -->
+	       <plugin>
+	                <groupId>org.codehaus.mojo</groupId>
+	                <artifactId>tomcat-maven-plugin</artifactId>
+	                <version>1.1</version>
+	                <configuration>
+	                    <path>/charge</path>
+	                    <port>8080</port>
+	                    <uriEncoding>UTF-8</uriEncoding>
+	                    <url>http://localhost:8080/manager/html</url>
+	                    <server>tomcat6</server>
+	                </configuration>
+	            </plugin>
+	        <plugin>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <version>2.3.2</version>  
+                <configuration>  
+                    <source>1.7</source>  
+                    <target>1.7</target>  
+                    <encoding>UTF-8</encoding>
+                </configuration>  
+            </plugin>
+            <!-- tomcat7插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>${webserver.port}</port>
+					<path>/${project.artifactId}</path>
+					<uriEncoding>${project.build.sourceEncoding}</uriEncoding>
+				</configuration>
+			</plugin>
+			<!-- jetty插件 -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>${webserver.port}</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webAppConfig>
+					<systemProperties>  
+						<systemProperty>
+							<name>org.mortbay.util.URI.charset</name>
+							<value>${project.build.sourceEncoding}</value>
+						</systemProperty>
+					</systemProperties>
+					<stopKey/>
+					<stopPort/>
+				</configuration>
+			</plugin>
+			<!-- 打包跳过单元测试 -->
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-surefire-plugin</artifactId>  
+		        <version>2.18.1</version>  
+		        <configuration>  
+		          <skipTests>true</skipTests>  
+		        </configuration>  
+		    </plugin>
+			<!-- <plugin>
+				YUI Compressor Maven压缩插件
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.3.0</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					读取js,css文件采用UTF-8编码
+					<encoding>UTF-8</encoding>
+					不显示js可能的错误
+					<jswarn>false</jswarn>
+					若存在已压缩的文件，会先对比源文件是否有改动  有改动便压缩，无改动就不压缩
+					<force>false</force>
+					在指定的列号后插入新行
+					<linebreakpos>-1</linebreakpos>
+					压缩之前先执行聚合文件操作
+					<preProcessAggregates>true</preProcessAggregates>
+					压缩后保存文件后缀 无后缀
+					<nosuffix>true</nosuffix>
+					源目录，即需压缩的根目录
+					<sourceDirectory>src/main/webapp/plug-in</sourceDirectory>
+					压缩js和css文件
+					<includes>
+						<include>plug-in/**/*.js</include>
+						<include>plug-in/accordion/css/*.css</include>
+						<include>plug-in/bootstrap/css/*.css</include>
+						<include>plug-in/easyui/themes/black/*.css</include>
+						<include>plug-in/easyui/themes/default/*.css</include>
+						<include>plug-in/Validform/**/*.css</include>
+					</includes>
+					以下目录和文件不会被压缩
+					<excludes>
+						<exclude>plug-in/**/*.min.js</exclude>
+						<exclude>plug-in/**/*.dev.js</exclude>
+						<exclude>plug-in/*/css/*.min.css</exclude>
+					</excludes>
+
+				</configuration>
+			</plugin> -->
+		</plugins>
+		<finalName>charge</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.sql</include>
+					<include>**/*.ftl</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.sql</include>
+					<include>**/*.ftl</include>
+				</includes>
+				<filtering>false</filtering>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											net.alchim31.maven
+										</groupId>
+										<artifactId>
+											yuicompressor-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.3.0,)
+										</versionRange>
+										<goals>
+											<goal>compress</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+</project>
